@@ -6,11 +6,20 @@ These files are for helping me learn about Data Structures & Algorithms.
 
 1. Open Powershell and Run as Administrator
 2. iwr https://deno.land/x/install/install.ps1 -useb | iex
-3. Close and reopen vscode
+3. Install the VS Code [Deno Extension](https://marketplace.visualstudio.com/items?itemName=denoland.vscode-deno)
+4. Close and reopen VS Code
 
 ## Run in debug mode
 
-1. Open a ts file in this folder
-2. Open the "Run and Debug" side bar
-3. Click "Javascript Debug Terminal" to open a debug terminal
-4. Run `deno run fileName.ts` to run the file in debug mode
+1. Open the "Run and Debug" side bar
+2. Click "Run Deno debug session"
+
+## Run without debug
+
+1. Open a terminal
+2. Run `deno filename.ts`
+
+## Creating new files
+
+1. create `fileName.ts`
+2. import it into `$main.ts`
