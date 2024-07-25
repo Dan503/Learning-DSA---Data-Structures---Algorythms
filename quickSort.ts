@@ -1,69 +1,100 @@
-function partition(
-	array: Array<number>, // (4 1) 3 [2]
-	lowIndex: number, // 0
-	highIndex: number, // 3
-) {
-	const pivotValue = array[highIndex] // 2
-	let indexA = lowIndex - 1 // -1
+// [n] = pivot number
+// <n> = number A
+// (n) = number B
+// ^n^ = high index number
+// vnv = low index number
 
-	array.forEach((_item, indexB) => {
-		// indexB = 0
-		// array[0] = 4
-		// valB(4) <= pivot(2) ? false = skip
-		// ==== (4) 1 3 [2] ==== 1st loop - skip
-		// indexB = 1
-		// array[1] = 1
-		// valB(1) <= pivot(2) ? true
-		// ==== 1 (4) 3 [2] ==== 2nd loop - modify
-		// indexB = 2
-		// array[2] = 4
-		// valB(4) <= pivot(2) ? false = skip
-		// ==== 1 4 (3) [2] ==== 3rd loop - skip
-		// indexB = 3
-		// valB = array[3] = 2
-		// valB(2) <= pivot(2) ? true
-		// ==== 2 4 3 1 ==== 4th loop - modify
+function partition(
+	// array = v64v 34 25 12 22 11 90 [^5^]
+	// array = 5 64 v25v 12 22 11 90 [^34^]
+	array: Array<number>,
+	lowIndex: number, // 0
+	highIndex: number, // 7
+) {
+	const pivotValue = array[highIndex] // = [5] then [34]
+	let indexA = lowIndex - 1 // -1 then 1
+
+	// Am I able to be more efficient by modifying the indexB initial value?
+	for (let indexB = 0; indexB < array.length; indexB++) {
+		/* 1st time running partition */
+		{
+			// ==== (64) 34 25 12 22 11 90 [5] ====
+			// indexB = 0
+			// valB = array[indexB(0)] = 64
+			// valB(64) <= pivotValue(5) ? false -> skip
+			// ==== 64 (34) 25 12 22 11 90 [5] ====
+			// indexB = 1
+			// valB = array[indexB(1)] = 34
+			// valB(34) <= pivotValue(5) ? false -> skip
+			// ==== 64 34 (25) 12 22 11 90 [5] ====
+			// 5 is the lowest value so I'll skip to...
+			// ==== 64 34 25 12 22 11 90 ([5]) ====
+			// indexB = 7
+			// valB = array[indexB(7)] = 5
+			// valB(5) <= pivotValue(5) ? true -> continue
+		}
+
+		/* 2nd time running partition */
+		{
+			// ==== (5) 64 v25v 12 22 11 90 [^34^] ====
+			// indexB = 0
+			// valB = array[indexB(0)] = 5
+			/**** UP TO HERE ****/
+		}
 
 		if (array[indexB] <= pivotValue) {
-			indexA += 1 // -1 --> 0 {loop} 0 --> 1
-			// array = <4> (1) 3 [2]
-			// valueA = array[indexA(0)] = 4
-			// valueB array[indexB(1)] = 1
-			// ======
-			// array = 1 <4> 3 ([2])
-			// valueA = array[indexA(1)] = 4
-			// valueB = array[indexB(3)] = 2
+			indexA += 1 // -1 --> 0
+			// array = <64> 34 25 12 22 11 90 ([5])
+			// valueA = array[indexA(0)] = 64
+			// valueB array[indexB(7)] = 5
 			const [valueA, valueB] = [array[indexA], array[indexB]]
 			// Array mutation!
-			array[indexA] = valueB // [0] 1 {loop} [1] 2
-			array[indexB] = valueA // [1] 4 {loop} [3] 4
-
-			// 2st loop = (1) (4) 3 [2]
-			// ======
-			// 4th loop = 1 (2) 3 (4)
+			array[indexA] = valueB // [0] 5
+			array[indexB] = valueA // [7] 64
 		}
-	})
 
-	// highIndex = 3
-	// indexA+1 =
+		// ([5]) 34 25 12 22 11 90 <64>
+	}
+
+	// highIndex = 7
+	// indexA+1 = 1
+	// highVal = ^64^
+	// aPlusVal = <34>
+	// [5] <34> 25 12 22 11 90 ^64^
 	const [highVal, aPlusVal] = [array[highIndex], array[indexA + 1]]
 	// Array mutation!
 	array[indexA + 1] = highVal
 	array[highIndex] = aPlusVal
-	return indexA + 1
+	// [5] ^64^ 25 12 22 11 90 <34>
+
+	return indexA + 1 // = 1
 }
 
 function quickSortAscending(
+	// v64v 34 25 12 22 11 90 ^5^
+	// {
+	// ^v5v^ 64 25 12 22 11 90 34 // low >> no effect
+	// 5 v64v 25 12 22 11 90 ^34^ // high
+	// }
+	//
 	array: Array<number>,
 	lowIndex = 0,
 	highIndex: number = array.length - 1,
 ) {
+	// 0 < 7 true
+	//
 	if (lowIndex < highIndex) {
-		debugger
+		// array = v64v 34 25 12 22 11 90 ^5^
+		// array = 5 v64v 25 12 22 11 90 ^34^
 		const pivotIndex = partition(array, lowIndex, highIndex)
+		// pivotIndex = 1
+		// array = [5] ^64^ 25 12 22 11 90 <34>
+
 		// need to figure out what the correct functions are that go here:
-		// _________(array, low, pivotIndex - 1)
-		// _________(array, pivotIndex + 1, highVal)
+		// array = ^v[5]v^ 64 25 12 22 11 90 34
+		quickSortAscending(array, lowIndex, pivotIndex - 1) // low handler
+		// array = 5 64 v25v 12 22 11 90 ^34^
+		quickSortAscending(array, pivotIndex + 1, highIndex) // high handler
 	}
 }
 
