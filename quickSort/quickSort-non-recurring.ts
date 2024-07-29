@@ -4,21 +4,71 @@
 
 	// initial:
 	// { 64, 34, 5, 12, 22, 11, 90, [25] }
-	const newPivotValue = quickSortSinglePass(arrayToBeSorted)
+	const newPivotIndex = quickSortSinglePass(arrayToBeSorted)
 
-	// first pass, {next sorting group}:
-	// {5, 12, 22, [11]}, 25, 34, 90, 64
+	/* Low group */
+	{
+		// first pass, {next sorting group}:
+		// {5, 12, 22, [11]}, <25>, 34, 90, 64
 
-	const lowGroup = quickSortSinglePass(arrayToBeSorted, 0, newPivotValue - 1)
+		const lowGroupPivot = quickSortSinglePass(
+			arrayToBeSorted,
+			0,
+			newPivotIndex - 1,
+		)
 
-	// Second pass, {next sorting group}
-	// 5, 11, 22, 12, 25, {34, 90, [64]}
+		// {[5]}, <11>, 22, 12, <25>, 34, 90, 64
 
-	const highGroup = quickSortSinglePass(
-		arrayToBeSorted,
-		newPivotValue + 1,
-		arrayToBeSorted.length - 1,
-	)
+		const lowLowGroup = quickSortSinglePass(
+			arrayToBeSorted,
+			0,
+			lowGroupPivot - 1,
+		)
+
+		// <5>, <11>, {22, [12]}, <25>, 34, 90, 64
+
+		const lowHighGroup = quickSortSinglePass(
+			arrayToBeSorted,
+			lowGroupPivot + 1,
+			newPivotIndex - 1,
+		)
+
+		// <5>, <11>, <12>, 22, <25>, 34, 90, 64
+
+		debugger
+	}
+
+	/* High group */
+	{
+		// Second pass, {next sorting group}
+		// <5>, <11>, <12>, 22, <25>, {34, 90, [64]}
+
+		const highGroupPivot = quickSortSinglePass(
+			arrayToBeSorted,
+			newPivotIndex + 1,
+			arrayToBeSorted.length - 1,
+		)
+
+		// <5>, <11>, <12>, 22, <25>, {34}, <64>, 90
+
+		const lowLowGroup = quickSortSinglePass(
+			arrayToBeSorted,
+			newPivotIndex + 1,
+			highGroupPivot - 1,
+		)
+
+		// <5>, <11>, <12>, 22, <25>, <34>, <64>, {90}
+
+		const lowHighGroup = quickSortSinglePass(
+			arrayToBeSorted,
+			highGroupPivot + 1,
+			arrayToBeSorted.length - 1,
+		)
+
+		// <5>, <11>, <12>, 22, <25>, <34>, <64>, <90>
+
+		debugger
+	}
 
 	// 3rd pass result
 	// 5, 11, 22, 12, 25, 34, 64, 90
