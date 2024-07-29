@@ -1,1 +1,2 @@
-import './quickSort'
+// import './quickSort-fail'
+import './quickSort/quickSort-singlePass'
