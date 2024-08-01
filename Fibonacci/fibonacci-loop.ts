@@ -1,13 +1,14 @@
 // O(n)
 export function fibonacciLoop(numberOfItems: number): Array<number> {
-	const result: Array<number> = []
-	const first2Numbers = [0, 1]
-	for (let i = 0; i < numberOfItems; i++) {
-		const newNumber =
-			i > first2Numbers.length - 1
-				? result[i - 1] + result[i - 2]
-				: first2Numbers[i]
+	let prev1 = 0
+	let prev2 = 1
+	const result: Array<number> = [prev1, prev2]
+
+	for (let i = result.length; i < numberOfItems; i++) {
+		const newNumber = prev1 + prev2
 		result.push(newNumber)
+		prev1 = prev2
+		prev2 = newNumber
 	}
 	return result
 }
