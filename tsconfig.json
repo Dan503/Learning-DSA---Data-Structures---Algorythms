@@ -5,6 +5,7 @@
 		"paths": { "@/*": ["./*"] },
 		"target": "ESNext",
 		"lib": ["DOM", "DOM.Iterable", "ESNext"],
+		"types": ["deno.ns"],
 		"allowJs": true,
 		"skipLibCheck": true,
 		"strict": true,
