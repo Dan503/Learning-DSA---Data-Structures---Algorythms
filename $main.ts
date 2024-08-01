@@ -1,5 +1,6 @@
-import './quickSort-fail'
-import './quickSort/0-quickSort-singlePass'
-import './quickSort/1-quickSort-non-recurring'
-import './quickSort/2-quickSort-recurring-ascending'
-import './quickSort/3-quickSort-recurring-descending'
+import './sorting-methods/bubble-sort/0-bubbleSort-singlePass.ts'
+
+import './sorting-methods/quickSort/0-quickSort-singlePass.ts'
+import './sorting-methods/quickSort/1-quickSort-non-recurring.ts'
+import './sorting-methods/quickSort/2-quickSort-recurring-ascending.ts'
+import './sorting-methods/quickSort/3-quickSort-recurring-descending.ts'
