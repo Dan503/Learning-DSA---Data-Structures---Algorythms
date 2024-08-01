@@ -1,6 +1,6 @@
 import { assertEquals } from 'jsr:@std/assert@1/equals'
 import { fibonacciLoop } from './fibonacci-loop.ts'
-// import { fibonacciFind } from './fibonacci-find.ts'
+import { fibonacciFind } from './fibonacci-find.ts'
 import { fibonacciRecursion } from './fibonacci-recursion.ts'
 
 const fibonacciSequence = [
@@ -24,8 +24,8 @@ Deno.test('fibonacci recursion', () => {
 	)
 })
 
-// Deno.test('fibonacci find', () => {
-// 	fibonacciSequence.forEach((number, index) => {
-// 		assertEquals(fibonacciFind(index), number, `find ${index}:${number}`)
-// 	})
-// })
+Deno.test('fibonacci find', () => {
+	fibonacciSequence.forEach((number, index) => {
+		assertEquals(fibonacciFind(index), number, `find ${index}:${number}`)
+	})
+})
