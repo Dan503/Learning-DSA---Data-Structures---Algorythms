@@ -1,7 +1,6 @@
-const sequence = [0, 1]
-
 export function fibonacciRecursion(
 	numberOfItems: number,
+	sequence: Array<number> = [0, 1],
 	prev1: number = sequence[0],
 	prev2: number = sequence[1],
 ): Array<number> {
@@ -9,7 +8,7 @@ export function fibonacciRecursion(
 	sequence.push(newValue)
 
 	if (numberOfItems > sequence.length) {
-		fibonacciRecursion(numberOfItems, prev2, newValue)
+		fibonacciRecursion(numberOfItems, sequence, prev2, newValue)
 	}
 
 	return sequence
