@@ -6,6 +6,19 @@ export function insertionSort(array: Array<number>): Array<number> {
 	for (let index = 0; index < array.length; index++) {
 		// O(n)
 		shiftIfPrevLarger(array, index)
+		//1    [7, 12],  9,    11,   3 // 7 < 12 ? yes, stop
+
+		//2     7, [12, <9>],  11,   3 // 12 < 9 ? no, SWAP
+		//-2a  [7, <9>], 12,   11,   3 // 7 < 9 ? yes, stop
+
+		//3     7,  9,  [12,  <11>], 3 // 12 < 11 ? no, SWAP
+		//-3a   7, [9,  <11>], 12,   3 // 11 < 9 ? yes, stop
+
+		//4     7,  9,   11,  [12,  <3>] // 12 < 3 ? no, SWAP
+		//-4a   7,  9,  [11,  <3>], 12 // 11 < 3 ? no, SWAP
+		//-4b   7, [9,  <3>], 11,   12 // 9 < 3 ? no, SWAP
+		//-4c  [7, <3>], 9,   11,   12 // 7 < 3 ? no, SWAP
+		//-4d  <3>, 7,   9,   11,   12 // no more items to swap with
 	}
 	return array
 }
@@ -20,6 +33,4 @@ export function shiftIfPrevLarger(array: Array<number>, postIndex: number) {
 	}
 }
 
-// insertionSortSinglePass([7, 12, 9, 11, 3], 0)
-
-shiftIfPrevLarger([12, 7, 9, 11, 3], 2)
+insertionSort([7, 12, 9, 11, 3])
