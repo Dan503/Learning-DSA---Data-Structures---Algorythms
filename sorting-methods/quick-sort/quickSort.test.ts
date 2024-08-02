@@ -21,6 +21,7 @@ Deno.test('quickSort non-recurring test', () => {
 	)
 
 	/* Low group */
+	// [{5, 12, 22, [11]}, <25>, 34, 90, 64]
 
 	// 2nd pass v
 	const lowGroupPivot = quickSortSinglePass(
@@ -59,7 +60,7 @@ Deno.test('quickSort non-recurring test', () => {
 	)
 
 	// /* High group */
-	// // <5>, <11>, <12>, 22, <25>, {34, 90, [64]}
+	// [<5>, <11>, <12>, 22, <25>, {34, 90, [64]}]
 
 	// 5th pass ^
 	const highGroupPivot = quickSortSinglePass(
