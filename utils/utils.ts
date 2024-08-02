@@ -1,4 +1,5 @@
 // Note that this is a mutating function!
+// O(1)
 export function swapArrayValues(
 	array: Array<number>,
 	index1: number,

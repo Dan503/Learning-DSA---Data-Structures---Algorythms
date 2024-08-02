@@ -1,16 +1,16 @@
 import { swapArrayValues } from '../../utils/utils.ts'
 
-// O(n) x O(1) = O(n)
+// O(n/2) x O(1) = O(n/2)
 export function selectionSortSinglePass(
 	array: Array<number>,
 	numberOfElementsMoved: number,
 ): Array<number> {
-	const lowestNumberIndex = findLowestNumber(array, numberOfElementsMoved) // O(n)
+	const lowestNumberIndex = findLowestNumber(array, numberOfElementsMoved) // O(n/2)
 	moveLowestToFront(array, lowestNumberIndex, numberOfElementsMoved) // O(1)
 	return array
 }
 
-// O(n)
+// O(n/2)
 function findLowestNumber(array: Array<number>, startingIndex: number): number {
 	let lowestNumber = null
 	let lowestNumberIndex = null
