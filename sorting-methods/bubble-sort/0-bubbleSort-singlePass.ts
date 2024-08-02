@@ -1,3 +1,5 @@
+import { swapArrayValues } from '../../utils/utils.ts'
+
 export function bubbleSortSinglePass(
 	arrayInput: Array<number>,
 	// one less than the full array since we look ahead by 1 element
@@ -13,13 +15,6 @@ export function bubbleSortSinglePass(
 	}
 
 	return arrayInput
-}
-
-function swapArrayValues(array: Array<number>, index1: number, index2: number) {
-	const value1 = array[index1]
-	const value2 = array[index2]
-	array[index1] = value2
-	array[index2] = value1
 }
 
 bubbleSortSinglePass([7, 12, 9, 11, 3])
