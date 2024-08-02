@@ -1,5 +1,5 @@
 import { assertEquals } from 'jsr:@std/assert@1/equals'
-import { quickSortSinglePass } from './0-quickSort-singlePass.ts'
+import { quickSortSinglePass } from './1-quickSort-singlePass.ts'
 import { recursiveQuickSortAscending } from './2-quickSort-recurring-ascending.ts'
 import { recursiveQuickSortDescending } from './3-quickSort-recurring-descending.ts'
 

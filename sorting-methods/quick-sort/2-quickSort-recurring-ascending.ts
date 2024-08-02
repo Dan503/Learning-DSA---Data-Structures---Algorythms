@@ -1,4 +1,4 @@
-import { quickSortSinglePass } from './0-quickSort-singlePass.ts'
+import { quickSortSinglePass } from './1-quickSort-singlePass.ts'
 
 let recursion = 0
 
