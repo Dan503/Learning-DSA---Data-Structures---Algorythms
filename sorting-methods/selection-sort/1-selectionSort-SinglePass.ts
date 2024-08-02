@@ -1,12 +1,12 @@
 import { swapArrayValues } from '../../utils/utils.ts'
 
-// O(n) x O(n) = O(n^2)
+// O(n) x O(1) = O(n)
 export function selectionSortSinglePass(
 	array: Array<number>,
 	numberOfElementsMoved: number,
 ): Array<number> {
 	const lowestNumberIndex = findLowestNumber(array, numberOfElementsMoved) // O(n)
-	moveLowestToFront(array, lowestNumberIndex, numberOfElementsMoved) // O(n)
+	moveLowestToFront(array, lowestNumberIndex, numberOfElementsMoved) // O(1)
 	return array
 }
 
@@ -29,26 +29,17 @@ function findLowestNumber(array: Array<number>, startingIndex: number): number {
 		}
 	}
 
-	return lowestNumberIndex || 0
+	return lowestNumberIndex || startingIndex
 }
 
-// O(n)
+// O(1)
 function moveLowestToFront(
 	array: Array<number>,
 	lowestNumberIndex: number,
 	numberOfElementsMoved = 0,
 ) {
-	// loop from lowestNumberIndex down to index of how many elements have been moved so far
-	for (
-		let index = lowestNumberIndex;
-		index > numberOfElementsMoved;
-		index--
-	) {
-		// >> swap lowestNumber with the previous value until you reach then end of the loop
-		if (index > 0) {
-			swapArrayValues(array, index, index - 1)
-		}
-	}
+	// We can just swap the values without having to shift all the values because the high values have not been sorted yet
+	swapArrayValues(array, lowestNumberIndex, numberOfElementsMoved)
 }
 
 selectionSortSinglePass([7, 12, 9, 11, 3], 0)

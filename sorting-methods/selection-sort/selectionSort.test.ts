@@ -5,7 +5,7 @@ import { selectionSort } from './2-selectionSort-containerLoop.ts'
 Deno.test('selection sort single pass', () => {
 	assertEquals(
 		selectionSortSinglePass([7, 12, 9, 11, 3], 0),
-		[3, 7, 12, 9, 11],
+		[3, 12, 9, 11, 7],
 	)
 })
 
