@@ -1,6 +1,11 @@
 // Start with an unsorted array
 quickSortSinglePass([64, 34, 5, 12, 22, 11, 90, 25])
 
+/**
+ * Most cases: `O(log n)`
+ *
+ * Worst case: `O(n^2)` (when the array is already correctly sorted)
+ */
 export function quickSortSinglePass(
 	arrayToBeSorted: Array<number>,
 	minIndex = 0,
@@ -14,6 +19,7 @@ export function quickSortSinglePass(
 
 	let numberOfSmallerValuesSoFar = 0
 
+	// O(log n)
 	for (let index = minIndex; index < maxIndex; index++) {
 		const currentValue = arrayToBeSorted[index]
 

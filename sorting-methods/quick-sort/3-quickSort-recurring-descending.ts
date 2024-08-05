@@ -4,6 +4,15 @@ let recursion = 0
 
 recursiveQuickSortDescending('!', [64, 34, 5, 12, 22, 11, 90, 25])
 
+/**
+ * Most cases: `O(n.log n)`
+ *
+ * Worst case: `O(n^2)`
+ *
+ * **== Rules for using quickSort ==**
+ * - A fantastic general purpose sorting algorithm
+ * - Bad performance if you run this on an already sorted array
+ */
 export function recursiveQuickSortDescending(
 	highOrLow: string,
 	array: Array<number>,

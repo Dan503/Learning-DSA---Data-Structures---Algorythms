@@ -1,5 +1,6 @@
 import { NumberBuckets } from './1-moveIntoNumberBuckets.ts'
 
+// O(n)
 export function unpackNumberBuckets(
 	numberBuckets: NumberBuckets,
 ): Array<number> {

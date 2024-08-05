@@ -1,6 +1,13 @@
 import { swapArrayValues } from '../../utils/utils.ts'
 
-// O(n) x O(n) = O(n^2)
+/**
+ * `O(n) x O(n)` = `O(n^2)`
+ * - best case scenario: already sorted correctly = `O(n)`
+ * - worst case scenario: already sorted... in the reverse order = `O(n^2)`
+ *
+ * **== Rules for using insertionSort ==**
+ * - **Best used for:** The values are already mostly sorted correctly and only need minor corrections
+ */
 export function insertionSort(array: Array<number>): Array<number> {
 	// O(n)
 	for (let index = 0; index < array.length; index++) {

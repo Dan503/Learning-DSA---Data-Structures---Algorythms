@@ -6,9 +6,26 @@ const sorted = radixSort(unsortedArray)
 
 console.log({ sorted })
 
-// best case scenario:  O(n.k)
-// an average scenario: O (n.log n)
-// worst case scenario: O(n^2)
+/**
+ * Best case scenario:  `O(n.k)` - low k, high n
+ *
+ * Average scenario: `O(n.log n)` - medium k, medium n
+ *
+ * Worst case: `O(n^2)` - high k, low n
+ *
+ * **== Rules for using radixSort ==**
+ *
+ * - **Best used for:**
+ *   Where `n` (Number of values in the array) has a _larger_ number of digits than the number of digits in the highest value found in the array
+ *   eg. if there are 1 million numbers in the array (`n = 1,000,000`) with the largest number in the array having only 4 digits (eg. `largestValue = 1,025`), that is a good use case for Radix sort. In this scenario `k = 4`.
+ *
+ * - Integer values only (no decimals)
+ *   All decimals are dropped when evaluating numbers
+ *
+ * - Positive values only
+ *   negative values will not be assessed correctly
+ */
+
 export function radixSort(array: Array<number>): Array<number> {
 	let numberLookUp = 1
 	// O(n)
@@ -28,17 +45,3 @@ export function radixSort(array: Array<number>): Array<number> {
 
 	return sortedArray
 }
-
-/**
- * == Rules for using radixSort ==
- *
- * - Best used for:
- *   Number of values has a number of digits greater than the number of digits in the highest value in the array
- *   eg. if there are 1 million numbers in the array with the largest number in the array having only 4 digits, that is a good use case for Radix sort.
- *
- * - Integer values only (no decimals)
- *   All decimals are dropped when evaluating numbers
- *
- * - Positive values only
- *   negative values will not be assessed correctly
- */
