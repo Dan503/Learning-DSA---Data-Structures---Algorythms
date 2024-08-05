@@ -1,6 +1,6 @@
 import { assertEquals } from 'jsr:@std/assert@1'
 import { selectionSortSinglePass } from './1-selectionSort-SinglePass.ts'
-import { selectionSort } from './2-selectionSort-containerLoop.ts'
+import { selectionSort } from './2-selectionSort.ts'
 
 Deno.test('selection sort single pass', () => {
 	assertEquals(
