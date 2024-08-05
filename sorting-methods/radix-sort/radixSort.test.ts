@@ -51,10 +51,7 @@ const thirdNumberBucketSet = [
 const finalSortedArray = [1, 74, 215, 338, 350, 372, 379, 399, 505, 566]
 
 Deno.test('1 - moveIntoNumberBuckets (3)', () => {
-	assertEquals(
-		moveIntoNumberBuckets(unsortedArray, 3, 3),
-		firstNumberBucketSet,
-	)
+	assertEquals(moveIntoNumberBuckets(unsortedArray, 1), firstNumberBucketSet)
 })
 
 Deno.test('2 - unpackNumberBuckets', () => {
@@ -63,7 +60,7 @@ Deno.test('2 - unpackNumberBuckets', () => {
 
 Deno.test('3 - moveIntoNumberBuckets (2)', () => {
 	assertEquals(
-		moveIntoNumberBuckets(firstSortingResult, 2, 3),
+		moveIntoNumberBuckets(firstSortingResult, 10),
 		secondNumberBucketSet,
 	)
 })
@@ -77,7 +74,7 @@ Deno.test('4 - unpackNumberBuckets', () => {
 
 Deno.test('5 - moveIntoNumberBuckets (1)', () => {
 	assertEquals(
-		moveIntoNumberBuckets(secondSortingResult, 1, 3),
+		moveIntoNumberBuckets(secondSortingResult, 100),
 		thirdNumberBucketSet,
 	)
 })
@@ -87,5 +84,5 @@ Deno.test('6 - unpackNumberBuckets', () => {
 })
 
 Deno.test('Radix sort', () => {
-	assertEquals(radixSort(unsortedArray, 3), finalSortedArray)
+	assertEquals(radixSort(unsortedArray), finalSortedArray)
 })
