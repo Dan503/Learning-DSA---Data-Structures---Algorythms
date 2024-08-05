@@ -1,1 +1,1 @@
-export * from './countingSort.ts'
+export * from './3-countingSort.ts'
