@@ -1,5 +1,6 @@
 /**
  * `O(n)`
+ *
  * **== Rules for using linearIndexSearch ==**
  * - Basic all purpose search algorithm
  * - The `.find()` method on JS arrays uses linear search
