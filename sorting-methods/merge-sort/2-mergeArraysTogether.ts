@@ -1,6 +1,8 @@
 /**
  * Note that `array1` and `array2` need to already be sorted
  * for mergeArrays to work properly.
+ *
+ * `O(n)` time efficiency
  */
 export function mergeArrays(
 	array1: Array<number>,
@@ -10,6 +12,7 @@ export function mergeArrays(
 	let indexB = 0
 	const mergedArray: Array<number> = []
 
+	// O(n)
 	while (indexA < array1.length || indexB < array2.length) {
 		const itemA = array1[indexA]
 		const itemB = array2[indexB]
@@ -23,6 +26,8 @@ export function mergeArrays(
 			indexB++
 		}
 
+		// Because the arrays are already sorted, it is safe to just push
+		// the lesser value to the end of the mergedArray
 		mergedArray.push(lesserItem)
 	}
 
