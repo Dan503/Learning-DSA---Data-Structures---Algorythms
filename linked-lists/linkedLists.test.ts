@@ -1,5 +1,5 @@
 import { assertEquals } from 'jsr:@std/assert@1/equals'
-import { singlyNodeHead } from './singlyLinkedList.ts'
+import { SinglyNode, singlyNodeHead } from './singlyLinkedList.ts'
 import { traverseBackward, traverseForward } from './traversal.ts'
 import { singlyCircularNodeHead } from './singlyCircularLinkedList.ts'
 import { doublyNodeHead, doublyNodeTail } from './doublyLinkedList.ts'
@@ -7,6 +7,7 @@ import {
 	doublyCircularNodeHead,
 	doublyCircularNodeTail,
 } from './doublyCircularLinkedList.ts'
+import { findLowestLinkedListValue } from './findLowestValue.ts'
 
 Deno.test('Singly forward traversal', () => {
 	const outputItems: Array<number> = []
@@ -83,4 +84,12 @@ Deno.test('Doubly circular backwards traversal', () => {
 	)
 
 	assertEquals(outputItems, [2, 13, 5, 3, 2, 13, 5, 3, 2, 13, 5, 3, 2])
+})
+
+Deno.test('find lowest value (singular)', () => {
+	assertEquals(findLowestLinkedListValue(singlyNodeHead), new SinglyNode(2))
+})
+
+Deno.test('find lowest value (circular)', () => {
+	assertEquals(findLowestLinkedListValue(singlyCircularNodeHead).data, 2)
 })
