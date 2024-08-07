@@ -1,6 +1,7 @@
-import { createSinglyLinkedList } from './singlyLinkedList.ts'
+import { createLinkedList } from './createLinkedList.ts'
 
-const { headNode, tailNode } = createSinglyLinkedList([3, 5, 13, 2], {
+const { headNode, tailNode } = createLinkedList([3, 5, 13, 2], {
+	isSingly: true,
 	isCircular: true,
 })
 

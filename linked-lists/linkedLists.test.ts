@@ -13,6 +13,7 @@ import {
 } from './doublyCircularLinkedList.ts'
 import { findLowestLinkedListValue } from './findLowestValue.ts'
 import { deleteDoublyNode, deleteSinglyNode } from './deleteNode.ts'
+import { createLinkedList } from './createLinkedList.ts'
 
 Deno.test('Singly forward traversal', () => {
 	const outputItems: Array<number> = []
@@ -127,30 +128,25 @@ Deno.test('Delete singly node', () => {
 })
 
 Deno.test('Delete doubly node', () => {
-	const node1 = new DoublyNode(3)
-	const node2 = new DoublyNode(5)
-	const node3 = new DoublyNode(13)
-	const node4 = new DoublyNode(2)
+	const { headNode, allNodes } = createLinkedList([3, 5, 13, 2], {
+		isSingly: false,
+	})
 
-	node1.next = node2
+	console.log('hello?')
 
-	node2.prev = node1
-	node2.next = node3
+	console.log(headNode, allNodes)
 
-	node3.prev = node2
-	node3.next = node4
+	const deletionNode = allNodes[1]
 
-	node4.prev = node3
-
-	deleteDoublyNode(node2)
+	deleteDoublyNode(allNodes[1])
 
 	const outputItems: Array<number> = []
-	traverseForward(node1, (node) => {
+	traverseForward(headNode, (node) => {
 		outputItems.push(node.data)
 	})
 
 	assertEquals(outputItems, [3, 13, 2])
 
-	assertEquals(node2.next, null)
-	assertEquals(node2.prev, null)
+	assertEquals(deletionNode.next, null)
+	assertEquals(deletionNode.prev, null)
 })

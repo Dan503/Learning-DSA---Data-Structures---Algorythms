@@ -1,3 +1,5 @@
+import { createLinkedList } from './createLinkedList.ts'
+
 export class SinglyNode {
 	data: number
 	next: null | SinglyNode = null
@@ -7,32 +9,9 @@ export class SinglyNode {
 	}
 }
 
-/**
- * Shouldn't actually use arrays when creating linked lists.
- * This is because it ends up using twice as much memory to store the linked list.
- * Using this because I need to make a lot of linked lists, I don't want to do it manually, and I'm using small numbers of elements.
- */
-export function createSinglyLinkedList(
-	numbers: Array<number>,
-	{ isCircular = false }: { isCircular?: boolean } = {},
-) {
-	const listItems = numbers.map((number) => new SinglyNode(number))
-
-	listItems.forEach((item, index) => {
-		item.next = listItems[index + 1] || null
-	})
-
-	if (isCircular) {
-		listItems[listItems.length - 1].next = listItems[0]
-	}
-
-	return {
-		headNode: listItems[0],
-		tailNode: listItems[listItems.length - 1],
-	}
-}
-
-const { headNode, tailNode } = createSinglyLinkedList([3, 5, 13, 2])
+const { headNode, tailNode } = createLinkedList([3, 5, 13, 2], {
+	isSingly: true,
+})
 
 // The long way of creating a Singly linked list
 
