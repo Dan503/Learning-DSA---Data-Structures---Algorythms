@@ -1,6 +1,7 @@
 import { DoublyNode } from '../list-types/doublyLinkedList.ts'
 import { SinglyNode } from '../list-types/singlyLinkedList.ts'
 
+// O(n)
 export function traverseForward<NodeType extends SinglyNode | DoublyNode>(
 	headNode: NodeType,
 	onTraversal: (node: NodeType) => void,
@@ -14,6 +15,7 @@ export function traverseForward<NodeType extends SinglyNode | DoublyNode>(
 	}
 }
 
+// O(n)
 export function traverseBackward(
 	headNode: DoublyNode,
 	onTraversal: (node: DoublyNode) => void,

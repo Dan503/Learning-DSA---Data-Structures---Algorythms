@@ -1,6 +1,6 @@
 import { DoublyNode } from '../list-types/doublyLinkedList.ts'
 import { SinglyNode } from '../list-types/singlyLinkedList.ts'
-import { traverseForward } from '../list-opperations/traversal.ts'
+import { traverseForward } from './traversal.ts'
 
 export function findLowestLinkedListValue(headNode: SinglyNode | DoublyNode) {
 	let lowestNode = headNode
