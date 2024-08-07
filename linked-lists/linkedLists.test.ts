@@ -1,23 +1,23 @@
 import { assertEquals } from 'jsr:@std/assert@1/equals'
+import { deleteDoublyNode, deleteSinglyNode } from './deleteNode.ts'
+import {
+	doublyCircularNodeHead,
+	doublyCircularNodeTail,
+} from './doublyCircularLinkedList.ts'
+import {
+	createDoublyLinkedList,
+	doublyNodeHead,
+	doublyNodeTail,
+} from './doublyLinkedList.ts'
+import { findLowestLinkedListValue } from './findLowestValue.ts'
+import { insertNodeAfter } from './insertNode.ts'
+import { singlyCircularNodeHead } from './singlyCircularLinkedList.ts'
 import {
 	createSinglyLinkedList,
 	SinglyNode,
 	singlyNodeHead,
 } from './singlyLinkedList.ts'
 import { traverseBackward, traverseForward } from './traversal.ts'
-import { singlyCircularNodeHead } from './singlyCircularLinkedList.ts'
-import {
-	createDoublyLinkedList,
-	DoublyNode,
-	doublyNodeHead,
-	doublyNodeTail,
-} from './doublyLinkedList.ts'
-import {
-	doublyCircularNodeHead,
-	doublyCircularNodeTail,
-} from './doublyCircularLinkedList.ts'
-import { findLowestLinkedListValue } from './findLowestValue.ts'
-import { deleteDoublyNode, deleteSinglyNode } from './deleteNode.ts'
 
 Deno.test('Singly forward traversal', () => {
 	const outputItems: Array<number> = []
@@ -140,4 +140,34 @@ Deno.test('Delete doubly node', () => {
 
 	assertEquals(node2.next, null)
 	assertEquals(node2.prev, null)
+})
+
+Deno.test('Insert singly node', () => {
+	const { allNodes } = createSinglyLinkedList([3, 5, 13, 2])
+	const [node1, node2] = allNodes
+	const { headNode } = createSinglyLinkedList([22])
+
+	insertNodeAfter(node2, headNode)
+
+	const outputItems: Array<number> = []
+	traverseForward(node1, (node) => {
+		outputItems.push(node.data)
+	})
+
+	assertEquals(outputItems, [3, 5, 22, 13, 2])
+})
+
+Deno.test('Insert doubly node', () => {
+	const { allNodes } = createDoublyLinkedList([3, 5, 13, 2])
+	const [node1, node2] = allNodes
+	const { headNode } = createDoublyLinkedList([22])
+
+	insertNodeAfter(node2, headNode)
+
+	const outputItems: Array<number> = []
+	traverseForward(node1, (node) => {
+		outputItems.push(node.data)
+	})
+
+	assertEquals(outputItems, [3, 5, 22, 13, 2])
 })
