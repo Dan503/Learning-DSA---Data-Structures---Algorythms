@@ -1,3 +1,5 @@
+import { traverseForward } from './traversal.ts'
+
 export class SinglyNode {
 	data: number
 	next: null | SinglyNode = null
@@ -16,12 +18,8 @@ node1.next = node2
 node2.next = node3
 node3.next = node4
 
-let currentNode: SinglyNode | null = node1
-
 console.log('Singly linked list')
 
-while (currentNode) {
-	console.log(currentNode.data, ' -> ')
-	currentNode = currentNode.next
-}
-console.log('...')
+traverseForward(node1, (node) => console.log(node.data, ' -> '))
+
+console.log(null)

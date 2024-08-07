@@ -1,4 +1,5 @@
 import { SinglyNode } from './singlyLinkedList.ts'
+import { traverseForward } from './traversal.ts'
 
 const node1 = new SinglyNode(3)
 const node2 = new SinglyNode(5)
@@ -11,18 +12,19 @@ node3.next = node4
 node4.next = node1
 
 console.log('Singly circular linked list')
-console.log(node1.data, ' -> ')
 
-let currentNode: SinglyNode | null = node2
 let loop = 1
 
-while (currentNode && loop <= 2) {
-	console.log(currentNode.data, ' -> ')
+console.log(node1.data, ' -> ')
 
-	if (currentNode === node1) {
-		loop++
-	}
-
-	currentNode = currentNode.next
-}
+traverseForward(
+	node2,
+	(node) => {
+		console.log(node.data, ' -> ')
+		if (node == node1) {
+			loop++
+		}
+	},
+	() => loop <= 2,
+)
 console.log('...')
