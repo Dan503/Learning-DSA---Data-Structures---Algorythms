@@ -31,6 +31,7 @@ export function createDoublyLinkedList(
 	return {
 		headNode: listItems[0],
 		tailNode: listItems[listItems.length - 1],
+		allNodes: listItems,
 	}
 }
 

@@ -1,8 +1,13 @@
 import { assertEquals } from 'jsr:@std/assert@1/equals'
-import { SinglyNode, singlyNodeHead } from './singlyLinkedList.ts'
+import {
+	createSinglyLinkedList,
+	SinglyNode,
+	singlyNodeHead,
+} from './singlyLinkedList.ts'
 import { traverseBackward, traverseForward } from './traversal.ts'
 import { singlyCircularNodeHead } from './singlyCircularLinkedList.ts'
 import {
+	createDoublyLinkedList,
 	DoublyNode,
 	doublyNodeHead,
 	doublyNodeTail,
@@ -100,14 +105,8 @@ Deno.test('find lowest value (circular)', () => {
 })
 
 Deno.test('Delete singly node', () => {
-	const node1 = new SinglyNode(3)
-	const node2 = new SinglyNode(5)
-	const node3 = new SinglyNode(13)
-	const node4 = new SinglyNode(2)
-
-	node1.next = node2
-	node2.next = node3
-	node3.next = node4
+	const { allNodes } = createSinglyLinkedList([3, 5, 13, 2])
+	const [node1, node2] = allNodes
 
 	deleteSinglyNode(node1, node2)
 
@@ -127,20 +126,8 @@ Deno.test('Delete singly node', () => {
 })
 
 Deno.test('Delete doubly node', () => {
-	const node1 = new DoublyNode(3)
-	const node2 = new DoublyNode(5)
-	const node3 = new DoublyNode(13)
-	const node4 = new DoublyNode(2)
-
-	node1.next = node2
-
-	node2.prev = node1
-	node2.next = node3
-
-	node3.prev = node2
-	node3.next = node4
-
-	node4.prev = node3
+	const { allNodes } = createDoublyLinkedList([3, 5, 13, 2])
+	const [node1, node2] = allNodes
 
 	deleteDoublyNode(node2)
 
