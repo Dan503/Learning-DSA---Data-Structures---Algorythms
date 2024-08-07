@@ -1,4 +1,4 @@
-import { DoublyNode } from './doublyLinkedList.ts'
+import { DoublyNode } from '../list-types/doublyLinkedList.ts'
 
 const node1 = new DoublyNode(3)
 const node2 = new DoublyNode(5)

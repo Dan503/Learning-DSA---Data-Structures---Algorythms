@@ -1,5 +1,5 @@
-import { DoublyNode } from './doublyLinkedList.ts'
-import { SinglyNode } from './singlyLinkedList.ts'
+import { DoublyNode } from '../list-types/doublyLinkedList.ts'
+import { SinglyNode } from '../list-types/singlyLinkedList.ts'
 
 export function traverseForward<NodeType extends SinglyNode | DoublyNode>(
 	headNode: NodeType,

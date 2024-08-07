@@ -1,23 +1,29 @@
 import { assertEquals } from 'jsr:@std/assert@1/equals'
-import { deleteDoublyNode, deleteSinglyNode } from './deleteNode.ts'
+import {
+	deleteDoublyNode,
+	deleteSinglyNode,
+} from './list-opperations/deleteNode.ts'
 import {
 	doublyCircularNodeHead,
 	doublyCircularNodeTail,
-} from './doublyCircularLinkedList.ts'
+} from './list-types/doublyCircularLinkedList.ts'
 import {
 	createDoublyLinkedList,
 	doublyNodeHead,
 	doublyNodeTail,
-} from './doublyLinkedList.ts'
-import { findLowestLinkedListValue } from './findLowestValue.ts'
-import { insertNodeAfter } from './insertNode.ts'
-import { singlyCircularNodeHead } from './singlyCircularLinkedList.ts'
+} from './list-types/doublyLinkedList.ts'
+import { findLowestLinkedListValue } from './list-opperations/findLowestValue.ts'
+import { insertNodeAfter } from './list-opperations/insertNode.ts'
+import { singlyCircularNodeHead } from './list-types/singlyCircularLinkedList.ts'
 import {
 	createSinglyLinkedList,
 	SinglyNode,
 	singlyNodeHead,
-} from './singlyLinkedList.ts'
-import { traverseBackward, traverseForward } from './traversal.ts'
+} from './list-types/singlyLinkedList.ts'
+import {
+	traverseBackward,
+	traverseForward,
+} from './list-opperations/traversal.ts'
 
 Deno.test('Singly forward traversal', () => {
 	const outputItems: Array<number> = []
