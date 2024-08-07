@@ -1,5 +1,3 @@
-import { traverseBackward, traverseForward } from './traversal.ts'
-
 export class DoublyNode {
 	data: number
 	next: null | DoublyNode = null
@@ -25,12 +23,5 @@ node3.next = node4
 
 node4.prev = node3
 
-console.log('Doubly linked list')
-
-console.log('forward')
-traverseForward(node1, (node) => console.log(node.data, ' -> '))
-console.log(null)
-
-console.log('backward')
-traverseBackward(node4, (node) => console.log(node.data, ' <- '))
-console.log(null)
+export const doublyNodeHead = node1
+export const doublyNodeTail = node4

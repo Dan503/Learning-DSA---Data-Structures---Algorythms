@@ -1,5 +1,4 @@
 import { DoublyNode } from './doublyLinkedList.ts'
-import { traverseBackward, traverseForward } from './traversal.ts'
 
 const node1 = new DoublyNode(3)
 const node2 = new DoublyNode(5)
@@ -18,36 +17,5 @@ node3.next = node4
 node4.prev = node3
 node4.next = node1
 
-let loop = 1
-
-console.log('Doubly circular linked list')
-
-console.log(node1.data, ' -> ')
-
-traverseForward(
-	node2,
-	(node) => {
-		console.log(node.data, ' -> ')
-		if (node == node1) {
-			loop++
-		}
-	},
-	() => loop <= 2,
-)
-console.log('...')
-
-loop = 1
-
-console.log(node4.data, ' <- ')
-
-traverseBackward(
-	node2,
-	(node) => {
-		console.log(node.data, ' <- ')
-		if (node == node4) {
-			loop++
-		}
-	},
-	() => loop <= 2,
-)
-console.log('...')
+export const doublyCircularNodeHead = node1
+export const doublyCircularNodeTail = node4
