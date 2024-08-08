@@ -4,6 +4,7 @@ import {
 	DoublyNode,
 } from '../list-types/doublyLinkedList.ts'
 import { traverseForward } from './traversal.ts'
+import { logLinkedList } from './logLinkedList.ts'
 
 /**
  * `O(n) x O(n)` = `O(n^2)`
@@ -31,7 +32,4 @@ const { headNode } = createDoublyLinkedList([1, 4, 3, 5, 2], {
 
 linkedListInsertionSort(headNode)
 
-const outputItems: Array<number> = []
-traverseForward(headNode, (node) => {
-	outputItems.push(node.data)
-})
+logLinkedList('insertSort', headNode)
