@@ -7,11 +7,13 @@ export function traverseForward<NodeType extends SinglyNode | DoublyNode>(
 	onTraversal: (node: NodeType) => void,
 	condition: (node: NodeType) => boolean = () => true,
 ) {
+	let limiter = 0
 	let currentNode: NodeType | null = headNode
 
 	while (currentNode && condition(currentNode)) {
 		onTraversal(currentNode)
 		currentNode = currentNode.next as NodeType | null
+		checkLimit(limiter++)
 	}
 }
 
@@ -21,9 +23,17 @@ export function traverseBackward(
 	onTraversal: (node: DoublyNode) => void,
 	condition: (node: DoublyNode) => boolean = () => true,
 ) {
+	let limiter = 0
 	let currentNode: DoublyNode | null = headNode
 	while (currentNode && condition(currentNode)) {
 		onTraversal(currentNode)
 		currentNode = currentNode.prev
+		checkLimit(limiter++)
+	}
+}
+
+function checkLimit(limiter: number) {
+	if (limiter > 1000) {
+		throw new Error('traversal limit reached')
 	}
 }
