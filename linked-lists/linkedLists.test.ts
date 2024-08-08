@@ -169,7 +169,7 @@ Deno.test('Insert singly node', () => {
 })
 
 Deno.test('Insert doubly node', () => {
-	const { allNodes } = createDoublyLinkedList([3, 5, 13, 2])
+	const { allNodes, tailNode } = createDoublyLinkedList([3, 5, 13, 2])
 	const [node1, node2] = allNodes
 	const { headNode } = createDoublyLinkedList([22])
 
@@ -181,6 +181,12 @@ Deno.test('Insert doubly node', () => {
 	})
 
 	assertEquals(outputItems, [3, 5, 22, 13, 2])
+
+	const reverseOutputItems: Array<number> = []
+	traverseBackward(tailNode, (node) => {
+		reverseOutputItems.push(node.data)
+	})
+	assertEquals(reverseOutputItems, [2, 13, 22, 5, 3])
 })
 
 Deno.test('doubly insertion sort', () => {
