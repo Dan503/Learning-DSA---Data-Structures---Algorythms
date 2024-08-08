@@ -85,11 +85,11 @@ Deno.test('Swap nodes (adjacent) [reverse]', () => {
 	assertEquals(outputItems, [1, 3, 2, 4, 5])
 })
 
-Deno.test('Swap nodes (headNode swap)', () => {
+Deno.test('Swap nodes (headNode unrelated)', () => {
 	const { allNodes } = createDoublyLinkedList([1, 2, 3, 4, 5], {
 		isCircular: false,
 	})
-	const [node1, node3] = allNodes
+	const [node1, _node2, node3] = allNodes
 
 	swapNodes(node1, node3)
 
@@ -104,11 +104,11 @@ Deno.test('Swap nodes (headNode swap)', () => {
 	assertEquals(outputItems, [3, 2, 1, 4, 5])
 })
 
-Deno.test('Swap nodes (headNode swap) [reverse]', () => {
+Deno.test('Swap nodes (headNode unrelated) [reverse]', () => {
 	const { allNodes } = createDoublyLinkedList([1, 2, 3, 4, 5], {
 		isCircular: false,
 	})
-	const [node1, node3] = allNodes
+	const [node1, _node2, node3] = allNodes
 
 	swapNodes(node3, node1)
 
@@ -123,11 +123,49 @@ Deno.test('Swap nodes (headNode swap) [reverse]', () => {
 	assertEquals(outputItems, [3, 2, 1, 4, 5])
 })
 
-Deno.test('Swap nodes (tailNode swap)', () => {
+Deno.test('Swap nodes (headNode adjacent)', () => {
+	const { allNodes } = createDoublyLinkedList([1, 2, 3, 4, 5], {
+		isCircular: false,
+	})
+	const [node1, node2] = allNodes
+
+	swapNodes(node1, node2)
+
+	const outputItems: Array<number> = []
+	let i = 0
+	traverseForward(node2, (node) => {
+		console.log(i, node)
+		outputItems.push(node.data)
+		limitCheck(i++)
+	})
+
+	assertEquals(outputItems, [2, 1, 3, 4, 5])
+})
+
+Deno.test('Swap nodes (headNode adjacent) [reverse]', () => {
+	const { allNodes } = createDoublyLinkedList([1, 2, 3, 4, 5], {
+		isCircular: false,
+	})
+	const [node1, node2] = allNodes
+
+	swapNodes(node2, node1)
+
+	const outputItems: Array<number> = []
+	let i = 0
+	traverseForward(node2, (node) => {
+		console.log(i, node)
+		outputItems.push(node.data)
+		limitCheck(i++)
+	})
+
+	assertEquals(outputItems, [2, 1, 3, 4, 5])
+})
+
+Deno.test('Swap nodes (tailNode unrelated)', () => {
 	const { allNodes, tailNode } = createDoublyLinkedList([1, 2, 3, 4, 5], {
 		isCircular: false,
 	})
-	const [node1, node3] = allNodes
+	const [node1, _node2, node3] = allNodes
 
 	swapNodes(node3, tailNode)
 
@@ -141,11 +179,12 @@ Deno.test('Swap nodes (tailNode swap)', () => {
 
 	assertEquals(outputItems, [1, 2, 5, 4, 3])
 })
-Deno.test('Swap nodes (tailNode swap) [reverse]', () => {
+
+Deno.test('Swap nodes (tailNode unrelated) [reverse]', () => {
 	const { allNodes, tailNode } = createDoublyLinkedList([1, 2, 3, 4, 5], {
 		isCircular: false,
 	})
-	const [node1, node3] = allNodes
+	const [node1, _node2, node3] = allNodes
 
 	swapNodes(tailNode, node3)
 
@@ -158,6 +197,41 @@ Deno.test('Swap nodes (tailNode swap) [reverse]', () => {
 	})
 
 	assertEquals(outputItems, [1, 2, 5, 4, 3])
+})
+
+Deno.test('Swap nodes (tailNode adjacent)', () => {
+	const { headNode, tailNode } = createDoublyLinkedList([1, 2, 3, 4, 5], {
+		isCircular: false,
+	})
+
+	swapNodes(tailNode.prev!, tailNode)
+
+	const outputItems: Array<number> = []
+	let i = 0
+	traverseForward(headNode, (node) => {
+		console.log(i, node)
+		outputItems.push(node.data)
+		limitCheck(i++)
+	})
+
+	assertEquals(outputItems, [1, 2, 3, 5, 4])
+})
+Deno.test('Swap nodes (tailNode adjacent) [reverse]', () => {
+	const { headNode, tailNode } = createDoublyLinkedList([1, 2, 3, 4, 5], {
+		isCircular: false,
+	})
+
+	swapNodes(tailNode, tailNode.prev!)
+
+	const outputItems: Array<number> = []
+	let i = 0
+	traverseForward(headNode, (node) => {
+		console.log(i, node)
+		outputItems.push(node.data)
+		limitCheck(i++)
+	})
+
+	assertEquals(outputItems, [1, 2, 3, 5, 4])
 })
 
 Deno.test('Swap nodes (head and tail)', () => {
