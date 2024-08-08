@@ -33,6 +33,60 @@ Arrays need to shift the index of every following element when an item is remove
 { 5, next: null }
 ```
 
+## Types of linked list
+
+### Singly
+
+Singly linked lists only define the `next` item.
+
+```js
+{
+	data: 2,
+	next: {
+		data: 3
+		next: { /* ... */ }
+	}
+}
+```
+
+### Doubly
+
+Doubly linked lists define both the `next` and the `prev` item. These are easier to work with however they take up a large amount of memory relative to arrays and singly linked lists.
+
+```js
+{
+	data: 2,
+	prev: {
+		data: 1,
+		prev: null,
+		next: {
+			data: 2,
+			// ...
+		}
+	},
+	next: {
+		data: 3
+		prev: {
+			data: 2,
+			// ...
+		}
+		next: null
+	}
+}
+```
+
+## Sorting
+
+Linked lists require you to navigate through each element one at a time.
+
+It is not possible to jump to the middle of a linked list, so most of the more efficient sorting algorithms cannot be used to sort a linked list.
+
+So this means that it is generally more efficient to sort arrays instead of sorting a linked list.
+
+Doubly style linked lists are easier to sort and give more efficient sorting options than singly style linked lists.
+
+Singly style linked lists need to be sorted using bubble sort since you can never look back to the previous element in a singly linked list
+
 ## In conclusion
 
 Use a linked list data structure if you have a large amount of data that is frequently inserting and removing items from the list.
