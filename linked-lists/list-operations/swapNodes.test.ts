@@ -3,12 +3,6 @@ import { createDoublyLinkedList } from '../list-types/doublyLinkedList.ts'
 import { swapNodes } from './swapNodes.ts'
 import { traverseForward } from './traversal.ts'
 
-function limitCheck(limiter: number) {
-	if (limiter > 100) {
-		throw new Error('infinite recursion detected')
-	}
-}
-
 Deno.test('Swap nodes (unrelated)', () => {
 	const { allNodes } = createDoublyLinkedList([1, 2, 3, 4, 5], {
 		isCircular: false,
@@ -18,11 +12,8 @@ Deno.test('Swap nodes (unrelated)', () => {
 	swapNodes(node2, node4)
 
 	const outputItems: Array<number> = []
-	let i = 0
 	traverseForward(node1, (node) => {
-		console.log(i, node)
 		outputItems.push(node.data)
-		limitCheck(i++)
 	})
 
 	assertEquals(outputItems, [1, 4, 3, 2, 5])
@@ -37,11 +28,8 @@ Deno.test('Swap nodes (unrelated) [reverse]', () => {
 	swapNodes(node4, node2)
 
 	const outputItems: Array<number> = []
-	let i = 0
 	traverseForward(node1, (node) => {
-		console.log(i, node)
 		outputItems.push(node.data)
-		limitCheck(i++)
 	})
 
 	assertEquals(outputItems, [1, 4, 3, 2, 5])
@@ -56,11 +44,8 @@ Deno.test('Swap nodes (adjacent)', () => {
 	swapNodes(node2, node3)
 
 	const outputItems: Array<number> = []
-	let i = 0
 	traverseForward(node1, (node) => {
-		console.log(i, node)
 		outputItems.push(node.data)
-		limitCheck(i++)
 	})
 
 	assertEquals(outputItems, [1, 3, 2, 4, 5])
@@ -75,11 +60,8 @@ Deno.test('Swap nodes (adjacent) [reverse]', () => {
 	swapNodes(node3, node2)
 
 	const outputItems: Array<number> = []
-	let i = 0
 	traverseForward(node1, (node) => {
-		console.log(i, node)
 		outputItems.push(node.data)
-		limitCheck(i++)
 	})
 
 	assertEquals(outputItems, [1, 3, 2, 4, 5])
@@ -94,11 +76,8 @@ Deno.test('Swap nodes (headNode unrelated)', () => {
 	swapNodes(node1, node3)
 
 	const outputItems: Array<number> = []
-	let i = 0
 	traverseForward(node3, (node) => {
-		console.log(i, node)
 		outputItems.push(node.data)
-		limitCheck(i++)
 	})
 
 	assertEquals(outputItems, [3, 2, 1, 4, 5])
@@ -113,11 +92,8 @@ Deno.test('Swap nodes (headNode unrelated) [reverse]', () => {
 	swapNodes(node3, node1)
 
 	const outputItems: Array<number> = []
-	let i = 0
 	traverseForward(node3, (node) => {
-		console.log(i, node)
 		outputItems.push(node.data)
-		limitCheck(i++)
 	})
 
 	assertEquals(outputItems, [3, 2, 1, 4, 5])
@@ -132,11 +108,8 @@ Deno.test('Swap nodes (headNode adjacent)', () => {
 	swapNodes(node1, node2)
 
 	const outputItems: Array<number> = []
-	let i = 0
 	traverseForward(node2, (node) => {
-		console.log(i, node)
 		outputItems.push(node.data)
-		limitCheck(i++)
 	})
 
 	assertEquals(outputItems, [2, 1, 3, 4, 5])
@@ -151,11 +124,8 @@ Deno.test('Swap nodes (headNode adjacent) [reverse]', () => {
 	swapNodes(node2, node1)
 
 	const outputItems: Array<number> = []
-	let i = 0
 	traverseForward(node2, (node) => {
-		console.log(i, node)
 		outputItems.push(node.data)
-		limitCheck(i++)
 	})
 
 	assertEquals(outputItems, [2, 1, 3, 4, 5])
@@ -170,11 +140,8 @@ Deno.test('Swap nodes (tailNode unrelated)', () => {
 	swapNodes(node3, tailNode)
 
 	const outputItems: Array<number> = []
-	let i = 0
 	traverseForward(node1, (node) => {
-		console.log(i, node)
 		outputItems.push(node.data)
-		limitCheck(i++)
 	})
 
 	assertEquals(outputItems, [1, 2, 5, 4, 3])
@@ -189,11 +156,8 @@ Deno.test('Swap nodes (tailNode unrelated) [reverse]', () => {
 	swapNodes(tailNode, node3)
 
 	const outputItems: Array<number> = []
-	let i = 0
 	traverseForward(node1, (node) => {
-		console.log(i, node)
 		outputItems.push(node.data)
-		limitCheck(i++)
 	})
 
 	assertEquals(outputItems, [1, 2, 5, 4, 3])
@@ -207,11 +171,8 @@ Deno.test('Swap nodes (tailNode adjacent)', () => {
 	swapNodes(tailNode.prev!, tailNode)
 
 	const outputItems: Array<number> = []
-	let i = 0
 	traverseForward(headNode, (node) => {
-		console.log(i, node)
 		outputItems.push(node.data)
-		limitCheck(i++)
 	})
 
 	assertEquals(outputItems, [1, 2, 3, 5, 4])
@@ -224,11 +185,8 @@ Deno.test('Swap nodes (tailNode adjacent) [reverse]', () => {
 	swapNodes(tailNode, tailNode.prev!)
 
 	const outputItems: Array<number> = []
-	let i = 0
 	traverseForward(headNode, (node) => {
-		console.log(i, node)
 		outputItems.push(node.data)
-		limitCheck(i++)
 	})
 
 	assertEquals(outputItems, [1, 2, 3, 5, 4])
@@ -242,11 +200,8 @@ Deno.test('Swap nodes (head and tail)', () => {
 	swapNodes(headNode, tailNode)
 
 	const outputItems: Array<number> = []
-	let i = 0
 	traverseForward(tailNode, (node) => {
-		console.log(i, node)
 		outputItems.push(node.data)
-		limitCheck(i++)
 	})
 
 	assertEquals(outputItems, [5, 2, 3, 4, 1])
@@ -260,11 +215,8 @@ Deno.test('Swap nodes (head and tail) [reverse]', () => {
 	swapNodes(tailNode, headNode)
 
 	const outputItems: Array<number> = []
-	let i = 0
 	traverseForward(tailNode, (node) => {
-		console.log(i, node)
 		outputItems.push(node.data)
-		limitCheck(i++)
 	})
 
 	assertEquals(outputItems, [5, 2, 3, 4, 1])

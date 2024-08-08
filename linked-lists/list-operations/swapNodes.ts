@@ -30,7 +30,6 @@ export function swapNodes(node1: DoublyNode, node2: DoublyNode) {
 
 		if (prevNodeA) prevNodeA.next = node2
 		if (nextNodeB) nextNodeB.prev = node1
-		// if (nextNodeB) nextNodeB.prev = node1
 	} else if (areSwapNodesAdjacent_reverse) {
 		node2.prev = node1
 		node1.next = node2
@@ -55,10 +54,6 @@ export function swapNodes(node1: DoublyNode, node2: DoublyNode) {
 	}
 }
 
-// 1 | 4 5
-
-// 1 <2> [3] 4 5
-// 1 [3] <2> 4 5
 const { allNodes } = createDoublyLinkedList([1, 2, 3, 4, 5], {
 	isCircular: false,
 })
@@ -69,7 +64,6 @@ swapNodes(node3, node2)
 const outputItems: Array<number> = []
 let i = 0
 traverseForward(node1, (node) => {
-	console.log(i, node)
 	outputItems.push(node.data)
 	i++
 })
