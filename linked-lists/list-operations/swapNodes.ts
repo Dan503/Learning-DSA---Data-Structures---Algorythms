@@ -17,26 +17,43 @@ export function swapNodes(node1: DoublyNode, node2: DoublyNode) {
 	detachDoublyNode(node2)
 
 	// Apply the new prev and next values to the nodes
-	node1.prev = prevNodeB
-	node1.next = nextNodeB
-	node2.prev = prevNodeA
-	node2.next = nextNodeA
+	const areSwapNodesAdjacent = prevNodeB === node1
+	if (areSwapNodesAdjacent) {
+		// node1 and node2 are directly next to each other
+		node1.prev = node2
+		node2.next = node1
 
-	//re-insert them into the array
-	if (prevNodeA) prevNodeA.next = node2
-	if (prevNodeB) prevNodeB.next = node1
-	if (nextNodeA) nextNodeA.prev = node2
-	if (nextNodeB) nextNodeB.prev = node1
+		node1.next = nextNodeB
+		node2.prev = prevNodeA
+
+		if (prevNodeA) prevNodeA.next = node2
+		if (nextNodeB) nextNodeB.prev = node1
+		// if (nextNodeB) nextNodeB.prev = node1
+	} else {
+		// node1 and node2 are unrelated to each other
+		node1.prev = prevNodeB
+		node1.next = nextNodeB
+		node2.prev = prevNodeA
+		node2.next = nextNodeA
+
+		//re-insert them into the array
+		if (prevNodeA) prevNodeA.next = node2
+		if (prevNodeB) prevNodeB.next = node1
+		if (nextNodeA) nextNodeA.prev = node2
+		if (nextNodeB) nextNodeB.prev = node1
+	}
 }
 
-// 1 <2> 3 [4] 5
-// 1 [4] 3 <2> 5
+// 1 | 4 5
+
+// 1 <2> [3] 4 5
+// 1 [3] <2> 4 5
 const { allNodes } = createDoublyLinkedList([1, 2, 3, 4, 5], {
 	isCircular: false,
 })
-const [node1, node2, _node3, node4] = allNodes
+const [node1, node2, node3] = allNodes
 
-swapNodes(node2, node4)
+swapNodes(node2, node3)
 
 const outputItems: Array<number> = []
 let i = 0
