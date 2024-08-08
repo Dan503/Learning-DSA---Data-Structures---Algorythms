@@ -1,6 +1,7 @@
-import './singlyLinkedList.ts'
-import './singlyCircularLinkedList.ts'
-import './doublyLinkedList.ts'
-import './doublyCircularLinkedList.ts'
+import './list-types/singlyLinkedList.ts'
+import './list-types/singlyCircularLinkedList.ts'
+import './list-types/doublyLinkedList.ts'
+import './list-types/doublyCircularLinkedList.ts'
+import './list-operations/swapNodes.ts'
 
 export {}

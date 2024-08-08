@@ -23,13 +23,19 @@ export function deleteSinglyNode(
 	})
 }
 
+/** Remove the node from the chain AND delete the next/prev data */
 export function deleteDoublyNode(deletionNode: DoublyNode) {
-	const prevNode = deletionNode.prev
-	const nextNode = deletionNode.next
-
-	if (prevNode) prevNode.next = nextNode
-	if (nextNode) nextNode.prev = prevNode
+	detachDoublyNode(deletionNode)
 
 	deletionNode.prev = null
 	deletionNode.next = null
+}
+
+/** Remove the node from the chain without deleting the next/prev data */
+export function detachDoublyNode(nodeToDetach: DoublyNode) {
+	const prevNode = nodeToDetach.prev
+	const nextNode = nodeToDetach.next
+
+	if (prevNode) prevNode.next = nextNode
+	if (nextNode) nextNode.prev = prevNode
 }

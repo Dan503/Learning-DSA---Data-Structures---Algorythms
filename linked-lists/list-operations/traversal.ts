@@ -11,7 +11,7 @@ export function traverseForward<NodeType extends SinglyNode | DoublyNode>(
 
 	while (currentNode && condition(currentNode)) {
 		onTraversal(currentNode)
-		currentNode = currentNode.next as NodeType
+		currentNode = currentNode.next as NodeType | null
 	}
 }
 

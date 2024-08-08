@@ -2,18 +2,19 @@ import { assertEquals } from 'jsr:@std/assert@1/equals'
 import {
 	deleteDoublyNode,
 	deleteSinglyNode,
-} from './list-opperations/deleteNode.ts'
+} from './list-operations/deleteNode.ts'
 import {
 	doublyCircularNodeHead,
 	doublyCircularNodeTail,
 } from './list-types/doublyCircularLinkedList.ts'
 import {
 	createDoublyLinkedList,
+	DoublyNode,
 	doublyNodeHead,
 	doublyNodeTail,
 } from './list-types/doublyLinkedList.ts'
-import { findLowestLinkedListValue } from './list-opperations/findLowestValue.ts'
-import { insertNodeAfter } from './list-opperations/insertNode.ts'
+import { findLowestLinkedListValue } from './list-operations/findLowestValue.ts'
+import { insertNodeAfter } from './list-operations/insertNode.ts'
 import { singlyCircularNodeHead } from './list-types/singlyCircularLinkedList.ts'
 import {
 	createSinglyLinkedList,
@@ -23,7 +24,9 @@ import {
 import {
 	traverseBackward,
 	traverseForward,
-} from './list-opperations/traversal.ts'
+} from './list-operations/traversal.ts'
+import { swapNodes } from './list-operations/swapNodes.ts'
+import { linkedListInsertionSort } from './list-operations/linkedListInsertionSort.ts'
 
 Deno.test('Singly forward traversal', () => {
 	const outputItems: Array<number> = []
@@ -176,4 +179,44 @@ Deno.test('Insert doubly node', () => {
 	})
 
 	assertEquals(outputItems, [3, 5, 22, 13, 2])
+})
+
+Deno.test('Swap doubly nodes', () => {
+	const { allNodes } = createDoublyLinkedList([1, 2, 3, 4, 5], {
+		isCircular: false,
+	})
+	const [node1, node2, _node3, node4] = allNodes
+
+	swapNodes(node2, node4)
+
+	const outputItems: Array<number> = []
+	let i = 0
+	traverseForward(node1, (node) => {
+		console.log(i, node)
+		outputItems.push(node.data)
+		i++
+	})
+
+	assertEquals(outputItems, [1, 4, 3, 2, 5])
+})
+
+Deno.test('doubly insertion sort', () => {
+	const { headNode } = createDoublyLinkedList([3, 5, 13, 2])
+
+	linkedListInsertionSort(headNode)
+
+	let newHead: DoublyNode | null = null
+
+	const outputItems: Array<number> = []
+	traverseBackward(headNode, (node) => {
+		if (!node.prev) newHead = node
+	})
+
+	if (newHead) {
+		traverseForward(newHead as DoublyNode, (node) => {
+			outputItems.push(node.data)
+		})
+	}
+
+	assertEquals(outputItems, [2, 3, 5, 13])
 })
