@@ -29,6 +29,7 @@ import { linkedListInsertionSort } from './list-operations/linkedListInsertionSo
 
 // imported tests
 import './list-operations/swapNodes.test.ts'
+import { linkedListBubbleSort } from './list-operations/linkedListBubbleSort.ts'
 
 Deno.test('Singly forward traversal', () => {
 	const outputItems: Array<number> = []
@@ -208,4 +209,19 @@ Deno.test('doubly insertion sort', () => {
 	}
 
 	assertEquals(outputItems, [2, 3, 5, 13])
+})
+
+Deno.test('Bubble sort', () => {
+	const { headNode } = createDoublyLinkedList([3, 2, 4, 5, 1], {
+		isCircular: false,
+	})
+
+	linkedListBubbleSort(headNode)
+
+	const outputItems: Array<number> = []
+	traverseForward(headNode, (node) => {
+		outputItems.push(node.data)
+	})
+
+	assertEquals(outputItems, [1, 2, 3, 4, 5])
 })
