@@ -4,6 +4,6 @@ import './list-types/doublyLinkedList.ts'
 import './list-types/doublyCircularLinkedList.ts'
 import './list-operations/swapNodes.ts'
 import './list-operations/linkedListInsertionSort.ts'
-import './list-operations/linkedListBubbleSort.ts'
+import './list-operations/linkedListSelectionSort.ts'
 
 export {}

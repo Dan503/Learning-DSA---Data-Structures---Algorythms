@@ -5,13 +5,13 @@ import {
 import { logLinkedList } from './logLinkedList.ts'
 import { traverseForward } from './traversal.ts'
 
-export function linkedListBubbleSort(headNode: SinglyNode) {
+export function linkedListSelectionSort(headNode: SinglyNode) {
 	traverseForward(headNode, (node) => {
-		bubbleSortSinglePass(node)
+		selectionSortSinglePass(node)
 	})
 }
 
-function bubbleSortSinglePass(startNode: SinglyNode) {
+function selectionSortSinglePass(startNode: SinglyNode) {
 	traverseForward(startNode, (thisNode) => {
 		const startValue = startNode.data
 		const thisValue = thisNode.data
@@ -29,6 +29,6 @@ const { headNode } = createSinglyLinkedList([1, 4, 3, 6, 2, 5], {
 	isCircular: false,
 })
 
-linkedListBubbleSort(headNode)
+linkedListSelectionSort(headNode)
 
-logLinkedList('Bubble sort', headNode)
+logLinkedList('selection sort', headNode)

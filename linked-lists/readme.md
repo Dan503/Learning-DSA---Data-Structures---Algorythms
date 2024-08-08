@@ -85,7 +85,7 @@ So this means that it is generally more efficient to sort arrays instead of sort
 
 Doubly style linked lists are easier to sort and give more efficient sorting options than singly style linked lists.
 
-Singly style linked lists need to be sorted using bubble sort since you can never look back to the previous element in a singly linked list
+Singly style linked lists need to be sorted using selection sort since you can never look back to the previous element in a singly linked list.
 
 ## In conclusion
 
