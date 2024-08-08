@@ -4,31 +4,31 @@ import { SinglyNode } from '../list-types/singlyLinkedList.ts'
 // O(n)
 export function traverseForward<NodeType extends SinglyNode | DoublyNode>(
 	headNode: NodeType,
-	onTraversal: (node: NodeType) => void,
+	onTraversal: (node: NodeType, index: number) => void,
 	condition: (node: NodeType) => boolean = () => true,
 ) {
-	let limiter = 0
+	let index = 0
 	let currentNode: NodeType | null = headNode
 
 	while (currentNode && condition(currentNode)) {
-		onTraversal(currentNode)
+		onTraversal(currentNode, index)
 		currentNode = currentNode.next as NodeType | null
-		checkLimit(limiter++)
+		checkLimit(index++)
 	}
 }
 
 // O(n)
 export function traverseBackward(
 	headNode: DoublyNode,
-	onTraversal: (node: DoublyNode) => void,
+	onTraversal: (node: DoublyNode, index: number) => void,
 	condition: (node: DoublyNode) => boolean = () => true,
 ) {
-	let limiter = 0
+	let index = 0
 	let currentNode: DoublyNode | null = headNode
 	while (currentNode && condition(currentNode)) {
-		onTraversal(currentNode)
+		onTraversal(currentNode, index)
 		currentNode = currentNode.prev
-		checkLimit(limiter++)
+		checkLimit(index++)
 	}
 }
 
