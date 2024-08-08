@@ -62,8 +62,6 @@ const [node1, node2, node3] = allNodes
 swapNodes(node3, node2)
 
 const outputItems: Array<number> = []
-let i = 0
 traverseForward(node1, (node) => {
 	outputItems.push(node.data)
-	i++
 })
